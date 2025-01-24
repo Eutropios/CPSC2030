@@ -11,7 +11,9 @@
         "lineEnding": "lf"
     },
     "files": {
-        "ignore": ["*.js"]
+        "ignore": [
+            "*.js"
+        ]
     },
     "javascript": {
         "formatter": {
@@ -35,14 +37,14 @@
     },
     "organizeImports": {
         "enabled": true
+    },
+    "css": {
+        "formatter": {
+            "enabled": true,
+            "indentStyle": "space"
+        },
+        "linter": {
+            "enabled": true
+        }
     }
-	"css": {
-		"formatter": {
-			"enabled": true,
-			"indentStyle": "space",
-		},
-		"linter": {
-			"enabled": true,
-		}
-	}
 }
