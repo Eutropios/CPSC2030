@@ -1,0 +1,53 @@
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+img.icon {
+    width: 3em;
+    height: auto;
+    margin-right: 0;
+}
+
+b.title {
+    font-size: 150%;
+}
+
+a.header-link,
+div.small-card-content {
+    font-size: 120%;
+}
+
+a.header-link {
+    color: #b1a2cc;
+}
+
+span.emph-colour {
+    color: #d6518d;
+}
+
+div.font-145 {
+    font-size: 145%;
+}
+
+div.font-130 {
+    font-size: 130%;
+}
+
+.media-caption {
+    width: fit-content;
+    margin: auto;
+}
+
+div.copyright {
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2em;
+    font-size: 130%;
+}
+
+.components-dotted {
+    text-decoration-style: dotted !important;
+}
