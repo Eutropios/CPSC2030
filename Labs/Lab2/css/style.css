@@ -7,19 +7,14 @@
 img.icon {
     width: 3em;
     height: auto;
-    margin-right: 0;
 }
 
 b.title {
     font-size: 150%;
 }
 
-a.header-link,
-div.small-card-content {
-    font-size: 120%;
-}
-
 a.header-link {
+    font-size: 120%;
     color: #b1a2cc;
 }
 
@@ -33,13 +28,4 @@ div.font-145 {
 
 div.font-130 {
     font-size: 130%;
-}
-
-.media-caption {
-    width: fit-content;
-    margin: auto;
-}
-
-.components-dotted {
-    text-decoration-style: dotted !important;
 }
