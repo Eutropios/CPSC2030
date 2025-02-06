@@ -40,14 +40,6 @@ div.font-130 {
     margin: auto;
 }
 
-div.copyright {
-    width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 2em;
-    font-size: 130%;
-}
-
 .components-dotted {
     text-decoration-style: dotted !important;
 }
