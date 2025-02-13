@@ -1,0 +1,19 @@
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+img.icon {
+    width: 3em;
+    height: auto;
+    fill: white;
+}
+
+a.header-link {
+    font-size: 120%;
+}
+
+span.emph-colour {
+    color: #d6518d;
+}
