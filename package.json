@@ -1,5 +1,8 @@
 {
-	"devDependencies": {
-		"@biomejs/biome": "1.9.4"
-	}
+    "pnpm": {
+        "neverBuiltDependencies": []
+    },
+    "devDependencies": {
+        "@biomejs/biome": "1.9.4"
+    }
 }

@@ -1,10 +1,10 @@
 (() => {
-    const setCopyRightYear = ()=> {
+    const setCopyRightYear = () => {
         const copy = document.querySelector("footer>kbd>span");
         if (copy !== null) copy.textContent = new Date().getFullYear().toString();
     };
 
-    const changeBackgroundColor = ()=> {
+    const changeBackgroundColor = () => {
         const first = document.getElementById("first");
         if (first !== null) first.style.background = "AliceBlue";
         const second = document.getElementById("second");
@@ -13,7 +13,7 @@
         if (third !== null) third.style.background = "DarkSalmon";
     };
 
-    const setValues = ()=> {
+    const setValues = () => {
         const dropdown = document.querySelector("select");
         if (dropdown !== null) {
             for (let i = 1; i < 1001; ++i) {
@@ -45,7 +45,7 @@
         if (table !== null) table.appendChild(tbody);
     };
 
-    window.onload = ()=> {
+    window.onload = () => {
         setCopyRightYear();
         document.querySelector("#change").onclick = changeBackgroundColor;
         setValues();
