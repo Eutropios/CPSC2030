@@ -3,7 +3,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Computer Colour Models</title>
+    <title>RGB Colour Model</title>
     <link rel="stylesheet" href="./css/style.css" />
     <link
       rel="stylesheet"
@@ -50,22 +50,22 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
                 <a
-                  class="nav-link header-link"
+                  class="nav-link fs-5 fw-bold"
                   aria-current="page"
                   href="./index.html"
-                  ><b>Home</b></a
+                  >Home</a
                 >
               </li>
               <li class="nav-item dropdown">
                 <a
-                  class="nav-link dropdown-toggle header-link"
+                  class="nav-link dropdown-toggle fs-5 fw-bold"
                   href="#"
                   id="navbarDropdown"
                   role="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  <b>Web Colours</b>
+                  Web Colours
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li>
@@ -74,14 +74,14 @@
                     >
                   </li>
                   <li>
-                    <a class="dropdown-item" href="#">Using CMYK Model</a>
+                    <a class="dropdown-item" href="./cmyk.html"
+                      >Using CMYK Model</a
+                    >
                   </li>
                 </ul>
               </li>
               <li class="nav-item">
-                <a class="nav-link header-link" href="./about.html"
-                  ><b>About</b></a
-                >
+                <a class="nav-link fs-5 fw-bold" href="./about.html">About</a>
               </li>
             </ul>
             <form class="d-flex">
@@ -99,6 +99,75 @@
         </div>
       </nav>
       <hr />
+
+      <!--Bottom-->
+      <div class="card text-center">
+        <div class="card-header bg-info text-light h3">
+          Using <abbr title="Red Green Blue">RGB</abbr> Colour Model
+        </div>
+        <div class="card-body">
+          <div>
+            <span class="font-monospace text-danger">RGB</span> is an
+            <span class="text-danger font-monospace">additive</span>
+            model, where a
+            <span class="text-danger font-monospace">colour</span> is generated
+            by <span class="text-danger font-monospace">combining</span> the
+            <span class="font-monospace text-danger">light</span>
+            intensity of the three colours
+            <span class="font-monospace text-danger">red</span>,
+            <span class="font-monospace text-danger">green</span>, and
+            <span class="font-monospace text-danger">blue</span>.
+            <br />
+            <span class="font-monospace text-danger">RGB</span> is used in
+            <span class="font-monospace text-danger">digital</span>
+            screens (monitors, TVs, cameras).
+          </div>
+          <div class="row">
+            <div class="col-4">
+              Select
+              <span class="font-monospace text-danger">red</span> value:
+              <select name="redval"></select>
+            </div>
+            <div class="col-4">
+              Select
+              <span class="font-monospace text-danger">green</span>
+              value:
+              <select name="greenval"></select>
+            </div>
+            <div class="col-4">
+              Select
+              <span class="font-monospace text-danger">blue</span> value:
+              <select name="blueval"></select>
+            </div>
+          </div>
+          <div class="m-3">
+            <div class="btn-group" role="group">
+              <button type="button" class="btn btn-info">Basic Colours</button>
+              <button type="button" class="btn btn-secondary">
+                Grey Colours
+              </button>
+              <button type="button" class="btn btn-primary">
+                Selected Colour
+              </button>
+              <button type="button" class="btn btn-warning">
+                Clear Colours
+              </button>
+            </div>
+          </div>
+          <div>
+            <table class="table table-striped text-center" id="output">
+              <thead class="text-white bg-info">
+                <tr>
+                  <th>Integer RGB</th>
+                  <th>Floating-Point RGB</th>
+                  <th>Hexadecimal RGB</th>
+                  <th>Display</th>
+                </tr>
+              </thead>
+            </table>
+          </div>
+        </div>
+      </div>
       <br />
       <!-- Copyright-->
       <footer class="text-center h3">
