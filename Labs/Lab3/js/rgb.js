@@ -27,25 +27,45 @@
 
     /**
      *
-     * @param {Numberp[]} rgb - array of values containing the rgb values of a colour
+     * @param {Number[] | string[]} rgb - array of values containing the rgb values of a colour
      * @param {boolean} isInteger - flag that determines whether the values are integers or floating point
-     * @returns string-formatted rgb value of colour
+     * @returns {string} string-formatted rgb value of colour
      */
-    const formatRGB = (rgb, isInteger = true) => {
-        // Round the floating point rgb to two decimal places, and make sure that
-        // all values have two decimal places even if it's like 0.1
-        // your code goes here
+    const formatRGB = (rgb, isInteger = true) =>
+        `(${(isInteger ? rgb : rgb.map((x) => x.toFixed(2))).join(",")})`;
+
+    const createSwatch = (rgb) => {
+        const td = document.createElement("td");
+        td.style.backgroundColor = rgb;
+        td.style.borderRadius = "30px";
+        return td;
     };
 
     const displayColorInformation = (rgb) => {
-        // your code goes here
+        const tbody = document.getElementById("output");
+        const tr = document.createElement("tr");
+        const hex = computeHexadecimalRGB(rgb);
+        const data = [formatRGB(rgb), formatRGB(computeFloatingPointRGB(rgb), false), hex];
+        for (let i = 0; i < data.length; ++i) {
+            const td = document.createElement("td");
+            td.setAttribute("class", "text-center");
+            const cell = document.createTextNode(data[i]);
+            td.appendChild(cell);
+            tr.appendChild(td);
+        }
+        tr.appendChild(createSwatch(hex));
+        tbody.appendChild(tr);
     };
 
     /**
      * Clears colour table colour information by modifying HTML content
      */
     const clearTable = () => {
-        // your code goes here
+        const tbody = document.getElementById("output");
+        const rows = tbody.querySelectorAll("tr"); // Get all rows
+        for (const row of rows) {
+            tbody.removeChild(row);
+        }
     };
 
     /**
@@ -58,9 +78,16 @@
     /**
      * Computes the hexadecimal representation of a colour given its integer values
      * @param {Number[]} rgb - array of integer rgb values for a single colour
-     * @returns {Number} hexadecimal representation of the colour
+     * @returns {string} hexadecimal representation of the colour as a string
      */
-    const computeHexadecimalRGB = (rgb) => rgb.map((x) => x.toString(16).toUpperCase());
+    const computeHexadecimalRGB = (rgb) => {
+        const hexValues = rgb.map((x) => {
+            const hex = x.toString(16).toUpperCase();
+            // add leading 0 if the hex val is only 1 char long
+            return hex.length === 1 ? `0${hex}` : hex;
+        });
+        return `#${hexValues.join("")}`;
+    };
 
     /**
      * Modifies HTML to display the "basic colour set" as described in PDF
@@ -79,6 +106,10 @@
             [255, 255, 0],
             [255, 255, 255],
         ];
+        clearTable();
+        for (colour of basicColours) {
+            displayColorInformation(colour);
+        }
     };
 
     /**
@@ -98,12 +129,17 @@
             [198, 198, 198],
             [231, 231, 231],
         ];
+        clearTable();
+        for (colour of greyColours) {
+            displayColorInformation(colour);
+        }
     };
 
     /**
      * Modifies HTML to displayed the selected colour using values from select elements
      */
     const displaySelectedColors = () => {
+        console.log("eggplant");
         // Fetch the values in the select boxes.
         // in the grey colour array,
         // convert the items to floating point rgb and store it.
@@ -113,7 +149,9 @@
     window.onload = () => {
         setCopyRightYear();
         setRGBValues();
-        console.log(computeFloatingPointRGB([42, 161, 152]));
-        console.log(computeHexadecimalRGB([42, 161, 152]));
+        document.querySelector("#basiccol").onclick = displayBasicColors;
+        document.querySelector("#greycol").onclick = displayGrayColors;
+        document.querySelector("#selectedcol").onclick = displaySelectedColors;
+        document.querySelector("#clearcol").onclick = clearTable;
     };
 })();

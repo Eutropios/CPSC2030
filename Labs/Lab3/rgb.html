@@ -142,20 +142,22 @@
           </div>
           <div class="m-3">
             <div class="btn-group" role="group">
-              <button type="button" class="btn btn-info">Basic Colours</button>
-              <button type="button" class="btn btn-secondary">
+              <button type="button" class="btn btn-info" id="basiccol">
+                Basic Colours
+              </button>
+              <button type="button" class="btn btn-secondary" id="greycol">
                 Grey Colours
               </button>
-              <button type="button" class="btn btn-primary">
+              <button type="button" class="btn btn-primary" id="selectedcol">
                 Selected Colour
               </button>
-              <button type="button" class="btn btn-warning">
+              <button type="button" class="btn btn-warning" id="clearcol">
                 Clear Colours
               </button>
             </div>
           </div>
           <div>
-            <table class="table table-striped text-center" id="output">
+            <table class="table table-striped text-center">
               <thead class="text-white bg-info">
                 <tr>
                   <th>Integer RGB</th>
@@ -164,6 +166,7 @@
                   <th>Display</th>
                 </tr>
               </thead>
+              <tbody id="output"></tbody>
             </table>
           </div>
         </div>
