@@ -3,12 +3,12 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>RGB Colour Model</title>
+    <title>CMYK Colour Model</title>
     <link rel="stylesheet" href="./css/style.css" />
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.3.3/solar/bootstrap.min.css"
-      integrity="sha512-0BjJSwKzc+sx3vM/B9nEU98M/hCLM2bcIWrzGe9fqJZFVicDjxu2vrHd0/7ildD+23p5JsQNo8IEL+sOb+A1iw=="
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.3.3/superhero/bootstrap.min.css"
+      integrity="sha512-yeFVFyLRIY48erNjFZ1uXiERPXN8izq4mBNe4iSgVYT0bq/ZiSsWwTlaSObBDeqR/+7MBw1g23iSpI9ru/qtGQ=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
@@ -18,7 +18,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
-    <script src="./js/rgb.js"></script>
+    <script src="./js/cmyk.js"></script>
   </head>
   <body>
     <div class="container">
@@ -69,12 +69,12 @@
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li>
-                    <a class="dropdown-item active" href="./rgb.html"
+                    <a class="dropdown-item" href="./rgb.html"
                       >Using RGB Model</a
                     >
                   </li>
                   <li>
-                    <a class="dropdown-item" href="./cmyk.html"
+                    <a class="dropdown-item text-white" href="./cmyk.html"
                       >Using CMYK Model</a
                     >
                   </li>
@@ -102,71 +102,80 @@
 
       <!--Bottom-->
       <div class="card text-center">
-        <div class="card-header bg-info text-light h3">
-          Using <abbr title="Red Green Blue">RGB</abbr> Colour Model
+        <div class="card-header bg-info text-white h3">
+          Using <abbr title="Cyan Magenta Yellow Key">CMYK</abbr> Colour Model
         </div>
         <div class="card-body">
           <div>
-            <span class="font-monospace text-danger">RGB</span> is an
-            <span class="text-danger font-monospace">additive</span>
+            <span class="font-monospace emph-color">CMYK</span> is a
+            <span class="font-monospace emph-color">subtractive</span>
             model, where a
-            <span class="text-danger font-monospace">colour</span> is generated
-            by <span class="text-danger font-monospace">combining</span> the
-            <span class="font-monospace text-danger">light</span>
+            <span class="font-monospace emph-color">colour</span> is generated
+            by <span class="font-monospace emph-color">absorbing</span> the
+            <span class="font-monospace emph-color">light</span>
             intensity of the three colours
-            <span class="font-monospace text-danger">red</span>,
-            <span class="font-monospace text-danger">green</span>, and
-            <span class="font-monospace text-danger">blue</span>.
+            <span class="font-monospace emph-color">cyan</span>,
+            <span class="font-monospace emph-color">magenta</span>, and
+            <span class="font-monospace emph-color">yellow</span>.
             <br />
-            <span class="font-monospace text-danger">RGB</span> is used in
-            <span class="font-monospace text-danger">digital</span>
-            screens (monitors, TVs, cameras).
+            <span class="font-monospace emph-color">CMYK</span> is used in
+            <span class="font-monospace emph-color">printing</span>.
           </div>
           <div class="row">
-            <div class="col-4">
+            <div class="col-3">
               Select
-              <span class="font-monospace text-danger">red</span> value:
-              <select id="redval"></select>
+              <span class="font-monospace emph-color">cyan</span> value:
+              <select name="cyanval">
+                <option selected>0.00</option>
+              </select>
             </div>
-            <div class="col-4">
+            <div class="col-3">
               Select
-              <span class="font-monospace text-danger">green</span>
+              <span class="font-monospace emph-color">magenta</span>
               value:
-              <select id="greenval"></select>
+              <select name="magentaval">
+                <option selected>0.00</option>
+              </select>
             </div>
-            <div class="col-4">
+            <div class="col-3">
               Select
-              <span class="font-monospace text-danger">blue</span> value:
-              <select id="blueval"></select>
+              <span class="font-monospace emph-color">yellow</span> value:
+              <select name="yellowval">
+                <option selected>0.00</option>
+              </select>
+            </div>
+            <div class="col-3">
+              Select
+              <span class="font-monospace emph-color">black</span> value:
+              <select name="blackval">
+                <option selected>0.00</option>
+              </select>
             </div>
           </div>
           <div class="m-3">
             <div class="btn-group" role="group">
-              <button type="button" class="btn btn-info" id="basiccol">
-                Basic Colours
-              </button>
-              <button type="button" class="btn btn-secondary" id="greycol">
+              <button type="button" class="btn btn-info">Basic Colours</button>
+              <button type="button" class="btn btn-secondary">
                 Grey Colours
               </button>
-              <button type="button" class="btn btn-primary" id="selectedcol">
+              <button type="button" class="btn btn-primary">
                 Selected Colour
               </button>
-              <button type="button" class="btn btn-warning" id="clearcol">
+              <button type="button" class="btn btn-warning">
                 Clear Colours
               </button>
             </div>
           </div>
           <div>
-            <table class="table table-striped text-center">
+            <table class="table table-striped text-center" id="output">
               <thead class="text-white bg-info">
                 <tr>
+                  <th>Floating-Point CMYK</th>
                   <th>Integer RGB</th>
-                  <th>Floating-Point RGB</th>
                   <th>Hexadecimal RGB</th>
                   <th>Display</th>
                 </tr>
               </thead>
-              <tbody id="output"></tbody>
             </table>
           </div>
         </div>
@@ -174,7 +183,7 @@
       <br />
       <!-- Copyright-->
       <footer class="text-center h3">
-        <kbd class="bg-primary text-light"
+        <kbd class="bg-primary text-white"
           >&copy;<span></span> Noah Jenner. All Rights Reserved.</kbd
         >
       </footer>

@@ -1,0 +1,14 @@
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+img.icon {
+    width: 3em;
+    height: auto;
+}
+
+.emph-color {
+    color: #d6518d;
+}

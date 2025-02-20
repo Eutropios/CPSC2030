@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>About</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.3.3/superhero/bootstrap.min.css"
+      integrity="sha512-yeFVFyLRIY48erNjFZ1uXiERPXN8izq4mBNe4iSgVYT0bq/ZiSsWwTlaSObBDeqR/+7MBw1g23iSpI9ru/qtGQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"
+      integrity="sha512-7Pi/otdlbbCR+LnW+F7PwFcSDJOuUJB3OxtEHbg4vSMvzvJjde4Po1v4BR9Gdc9aXNUNFVUY+SK51wWT8WF0Gg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+  </head>
+  <body>
+    <div class="container">
+      <hr />
+      <!---Top bar-->
+      <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+          <div class="navbar-brand h1" href="index.html">
+            <img
+              src="./img/question.svg"
+              alt="Question mark in circle"
+              class="icon"
+            />
+            <b class="title font-monospace h3">Web Development</b
+            ><sup>CPSC 2030</sup>
+          </div>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a
+                  class="nav-link fs-5 fw-bold"
+                  aria-current="page"
+                  href="./index.html"
+                  >Home</a
+                >
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle fs-5 fw-bold"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Web Colours
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li>
+                    <a class="dropdown-item" href="./rgb.html"
+                      >Using RGB Model</a
+                    >
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="./cmyk.html"
+                      >Using CMYK Model</a
+                    >
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link fs-5 active fw-bold" href="./about.html"
+                  >About</a
+                >
+              </li>
+            </ul>
+            <form class="d-flex">
+              <input
+                class="form-control me-2"
+                type="search"
+                placeholder="Search"
+                aria-label="Search"
+              />
+              <button class="btn btn-outline-info text-white" type="submit">
+                Search
+              </button>
+            </form>
+          </div>
+        </div>
+      </nav>
+      <hr />
+
+      <!--Bottom card-->
+      <div class="card">
+        <div class="card-header bg-info text-white text-center h3">
+          Web Development II (CPSC 2030)
+        </div>
+        <div class="text-left">
+          <div class="card-body">
+            <figure>
+              <blockquote class="blockquote">
+                <p>
+                  Intermediate website design and development covering
+                  information architecture, accessibility, and usability.
+                  Includes advanced CSS, basic programming (client-side and
+                  server-side), the Document Object Model (DOM), handling form
+                  data, and designing for mobile devices. Students will design
+                  and implement a moderately complex website as a class project.
+                </p>
+              </blockquote>
+              <hr />
+              <figcaption class="blockquote-footer text-white">
+                Langara College (<cite title="Source Title" class="h6"
+                  ><a
+                    href="https://langara.ca/programs-and-courses/courses/CPSC/2030.html"
+                    >CPSC 2030 Course Description</a
+                  ></cite
+                >)
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+      <br />
+      <!-- Copyright-->
+      <footer class="text-center h3">
+        <kbd class="bg-primary text-white"
+          >&copy;<span>2025 Noah Jenner. All Rights Reserved.</span></kbd
+        >
+      </footer>
+    </div>
+  </body>
+</html>
