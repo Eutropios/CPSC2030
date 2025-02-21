@@ -10,15 +10,15 @@
     /**
      * Populates select elements on page with values 0-255 inclusive
      */
-    const setRGBValues = () => {
+    const setCMYKValues = () => {
         const dropdownList = document.querySelectorAll("select");
         // Guard against bad query by checking for null
         if (dropdownList !== null) {
             for (const dropdownItem of dropdownList) {
-                for (let i = 0; i < 256; ++i) {
+                for (let i = 0; i <= 100; ++i) {
                     const option = document.createElement("option");
-                    option.value = i.toString();
-                    option.text = i.toString();
+                    option.value = (i / 100).toFixed(2);
+                    option.text = (i / 100).toFixed(2);
                     dropdownItem.add(option);
                 }
             }
@@ -31,7 +31,7 @@
      * @param {boolean} isInteger - flag that determines whether the values are integers or floating point
      * @returns {string} string-formatted rgb value of colour
      */
-    const formatRGB = (rgb, isInteger = true) =>
+    const formatColorValues = (rgb, isInteger = true) =>
         `(${(isInteger ? rgb : rgb.map((x) => x.toFixed(2))).join(",")})`;
 
     const createSwatch = (rgb) => {
@@ -41,11 +41,12 @@
         return td;
     };
 
-    const displayColorInformation = (rgb) => {
+    const displayColorInformation = (cmyk) => {
         const tbody = document.getElementById("output");
         const tr = document.createElement("tr");
+        const rgb = computeIntegerRGB(cmyk);
         const hex = computeHexadecimalRGB(rgb);
-        const data = [formatRGB(rgb), formatRGB(computeFloatingPointRGB(rgb), false), hex];
+        const data = [formatColorValues(cmyk, false), formatColorValues(rgb), hex];
         for (let i = 0; i < data.length; ++i) {
             const td = document.createElement("td");
             td.setAttribute("class", "text-center");
@@ -72,10 +73,14 @@
 
     /**
      * Computes the floating point representation of a colour given its integer values
-     * @param {Number[]} rgb - array of integer rgb values for a single colour
-     * @returns {Number[]} array of floating point rgb values for single colour
+     * @param {Number[]} cmyk - array of floating point cmyk values for a single colour
+     * @returns {Number[]} array of integer point rgb values for single colour
      */
-    const computeFloatingPointRGB = (rgb) => rgb.map((x) => x / 255);
+    const computeIntegerRGB = (cmyk) => [
+        Math.floor(255 * (1 - cmyk[0]) * (1 - cmyk[3])), // red
+        Math.floor(255 * (1 - cmyk[1]) * (1 - cmyk[3])), // green
+        Math.floor(255 * (1 - cmyk[2]) * (1 - cmyk[3])), // blue
+    ];
 
     /**
      * Computes the hexadecimal representation of a colour given its integer values
@@ -96,14 +101,14 @@
      */
     const displayBasicColors = () => {
         const basicColours = [
-            [0, 0, 0],
-            [255, 0, 0],
-            [0, 255, 0],
-            [0, 0, 255],
-            [0, 255, 255],
-            [255, 0, 255],
-            [255, 255, 0],
-            [255, 255, 255],
+            [1.0, 1.0, 1.0, 0.0],
+            [0.0, 1.0, 1.0, 0.0],
+            [1.0, 0.0, 1.0, 0.0],
+            [1.0, 1.0, 0.0, 0.0],
+            [1.0, 0.0, 0.0, 0.0],
+            [0.0, 1.0, 0.0, 0.0],
+            [0.0, 0.0, 1.0, 0.0],
+            [0.0, 0.0, 0.0, 0.0],
         ];
         clearTable();
         for (const colour of basicColours) {
@@ -116,14 +121,17 @@
      */
     const displayGrayColors = () => {
         const greyColours = [
-            [0, 0, 0],
-            [33, 33, 33],
-            [66, 66, 66],
-            [99, 99, 99],
-            [132, 132, 132],
-            [165, 165, 165],
-            [198, 198, 198],
-            [231, 231, 231],
+            [0.0, 0.0, 0.0, 0.0],
+            [0.1, 0.1, 0.1, 0.0],
+            [0.2, 0.2, 0.2, 0.0],
+            [0.3, 0.3, 0.3, 0.0],
+            [0.4, 0.4, 0.4, 0.0],
+            [0.5, 0.5, 0.5, 0.0],
+            [0.6, 0.6, 0.6, 0.0],
+            [0.7, 0.7, 0.7, 0.0],
+            [0.8, 0.8, 0.8, 0.0],
+            [0.9, 0.9, 0.9, 0.0],
+            [1.0, 1.0, 1.0, 0.0],
         ];
         clearTable();
         for (const colour of greyColours) {
@@ -136,15 +144,16 @@
      */
     const displaySelectedColors = () => {
         // Need to cast to int first because otherwise the hex conversion wont work
-        const redval = Number(document.getElementById("redval").value);
-        const greenval = Number(document.getElementById("greenval").value);
-        const blueval = Number(document.getElementById("blueval").value);
-        displayColorInformation([redval, greenval, blueval]);
+        const cyanval = Number(document.getElementById("cyanval").value);
+        const magentaval = Number(document.getElementById("magentaval").value);
+        const yellowval = Number(document.getElementById("yellowval").value);
+        const blackval = Number(document.getElementById("blackval").value);
+        displayColorInformation([cyanval, magentaval, yellowval, blackval]);
     };
 
     window.onload = () => {
         setCopyRightYear();
-        setRGBValues();
+        setCMYKValues();
         document.querySelector("#basiccol").onclick = displayBasicColors;
         document.querySelector("#greycol").onclick = displayGrayColors;
         document.querySelector("#selectedcol").onclick = displaySelectedColors;
