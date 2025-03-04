@@ -1,4 +1,5 @@
 (() => {
+    WEATHER_API_KEY = "975ec9bab286d6d3920bd31dd58e4998";
     const setCopyRightYear = () => {
         const copy = document.querySelector("footer>kbd>span");
         if (copy !== null) copy.textContent = new Date().getFullYear().toString();
@@ -11,7 +12,9 @@
                     latitude: position.coords.latitude,
                     longitude: position.coords.longitude,
                 };
-                console.log(`(Latitude,Longitude)=(${xy.latitude},${xy.longitude})`);
+                const longlat = `(Latitude,Longitude)=(${xy.latitude},${xy.longitude})`;
+                document.getElementById("geo-location").textContent = longlat;
+                console.log(longlat);
             });
         } else {
             console.log("\t|Geolocation is not supported by this browser!");
@@ -38,10 +41,20 @@
 
     const createCitySelect = (select) => {
         const cityPlaceholder = document.createElement("option");
+        // rm blank option to make the website look more presentable
         select.remove(0);
         cityPlaceholder.text = "Select a city";
         cityPlaceholder.hidden = true;
         select.add(cityPlaceholder);
+    };
+
+    const populate = (select, content) => {
+        for (i of content) {
+            const option = document.createElement("option");
+            option.value = i.toString();
+            option.text = i.toString();
+            select.add(option);
+        }
     };
 
     const populateCities = async () => {
@@ -50,24 +63,14 @@
         const data = await getJSONData("./data/cities.json");
         const cities = data[countrySelect];
         createCitySelect(citySelect);
-        for (i of cities) {
-            const option = document.createElement("option");
-            option.value = i.toString();
-            option.text = i.toString();
-            citySelect.add(option);
-        }
+        populate(citySelect, cities);
     };
 
     const populateCountries = async () => {
         const data = await getJSONData("./data/cities.json");
         const countries = Object.keys(data);
         const dropdown = document.getElementById("countryselect");
-        for (i of countries) {
-            const option = document.createElement("option");
-            option.value = i.toString();
-            option.text = i.toString();
-            dropdown.add(option);
-        }
+        populate(dropdown, countries);
     };
 
     const displayMap = () => {
