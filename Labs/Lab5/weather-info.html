@@ -4,6 +4,7 @@
   <head>
     <meta charset="utf-8" />
     <title>Using APIs</title>
+    <link rel="icon" type="image/x-icon" href="./img/navquestion.ico" />
     <link rel="stylesheet" href="./css/style.css" />
     <link
       rel="stylesheet"
@@ -18,7 +19,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
-    <script src="./js/home.js"></script>
+    <script src="./js/weather.js"></script>
   </head>
   <body>
     <div class="container">
@@ -28,7 +29,7 @@
         <div class="container-fluid">
           <div class="navbar-brand h1">
             <img
-              src="./img/question.svg"
+              src="./img/navquestion.ico"
               alt="Question mark in circle"
               class="icon"
             />
@@ -48,13 +49,13 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav text-center me-auto mb-2 mb-lg-0 h5">
-              <li class="nav-item mx-3">
-                <a class="nav-link" aria-current="page" href="./index.html">
-                  Home
-                </a>
+              <li class="nav-item">
+                <a class="nav-link me-3" aria-current="page" href="./index.html"
+                  >Home</a
+                >
               </li>
               <li class="nav-item me-3">
-                <a class="nav-link active" href="#" aria-current="page">
+                <a class="nav-link active bg-info" href="#" aria-current="page">
                   City Weather Information
                 </a>
               </li>
@@ -63,9 +64,8 @@
                   class="nav-link"
                   aria-current="page"
                   href="./using-plotly.html"
+                  >Plotting Weather Data</a
                 >
-                  Plotting Weather Data
-                </a>
               </li>
             </ul>
             <form class="d-flex">
@@ -75,10 +75,7 @@
                 placeholder="Search"
                 aria-label="Search"
               />
-              <button
-                class="btn btn-outline-info text-white align-content-center"
-                type="submit"
-              >
+              <button class="btn btn-outline-info text-white" type="submit">
                 Search
               </button>
             </form>
@@ -88,17 +85,145 @@
       <hr />
 
       <div class="card">
-        <div class="d-flex card-body card-header-col justify-content-center">
-          <span class="text-white card-header-span px-2">
+        <div class="card-body card-header-col text-center">
+          <span
+            class="text-white card-header-span px-2 text-center w-auto fs-5 py-1"
+          >
             Your current
             <span class="font-monospace emph-color"> geolocation </span>
             is
-            <span class="font-monospace emph-color"
+            <span id="geo-location" class="font-monospace emph-color"
               >(Latitude,Longitude)=(49.22,-123.11)</span
             >
           </span>
         </div>
       </div>
+      <hr />
+      <div class="row">
+        <div class="col-lg-6 col-xl-6 col-md-6 col-xs-12 col-s-12 col-xxl-6">
+          <div class="card">
+            <div class="card-head bg-primary text-white display-6 text-center">
+              Weather in Vancouver
+            </div>
+            <div class="tbody">
+              <table class="table table-dark">
+                <thead class="h5">
+                  <tr>
+                    <th>(Latitude,Longitude)</th>
+                    <td id="latlong">
+                      <img src="./img/question.svg" alt="Image" class="icon" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>Sea Level</th>
+                    <td id="level">
+                      <img src="./img/question.svg" alt="Image" class="icon" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>Weather Description</th>
+                    <td id="description">
+                      <img src="./img/question.svg" alt="Image" class="icon" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>Temperature</th>
+                    <td id="temperature">
+                      <img src="./img/question.svg" alt="Image" class="icon" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>Feels Like</th>
+                    <td id="feels">
+                      <img src="./img/question.svg" alt="Image" class="icon" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>Humidity</th>
+                    <td id="humidty">
+                      <img src="./img/question.svg" alt="Image" class="icon" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>Wind Speed</th>
+                    <td id="wind">
+                      <img src="./img/question.svg" alt="Image" class="icon" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" class="text-center">
+                      <img
+                        src="./img/question.svg"
+                        class="icon"
+                        id="weather-icon"
+                      />
+                    </td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr></tr>
+                </tbody>
+              </table>
+            </div>
+            <div id="error-box"></div>
+          </div>
+          <br />
+        </div>
+        <div class="col-lg-6 col-xl-6 col-md-6 col-xs-12 col-s-12 col-xxl-6">
+          <div class="card text-center">
+            <div class="card-header bg-primary color-white text-white h4">
+              Map
+            </div>
+            <div class="card-body">
+              <img
+                id="map"
+                alt="Image"
+                src="./img/question.svg"
+                class="rounded mx-auto d-block"
+                width="450"
+              />
+            </div>
+            <div class="card-footer h2">
+              <button class="btn btn-lg btn-primary">Display Map</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <div id="data-box">
+            <button
+              class="btn btn-white text-center btn-outline-success"
+              id="weatherData"
+            >
+              Select a country
+            </button>
+            <br />
+            <select
+              name="Country Select"
+              id="countryselect"
+              class="form-select"
+            >
+              <option selected="true" hidden>Select a country</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-6">
+          <div id="output-box">
+            <button
+              class="btn btn-white text-center btn-outline-success"
+              id="weatherData"
+            >
+              Select a city
+            </button>
+            <br />
+            <select name="City Select" id="cityselect" class="form-select">
+              <option hidden></option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <br />
       <!-- Copyright-->
       <footer class="text-center h3">
         <kbd class="bg-primary text-white">

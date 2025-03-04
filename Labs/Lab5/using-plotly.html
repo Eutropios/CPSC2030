@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <title>Using APIs</title>
     <link rel="stylesheet" href="./css/style.css" />
+    <link rel="icon" type="image/x-icon" href="./img/navquestion.ico" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.3.3/pulse/bootstrap.min.css"
@@ -32,7 +33,7 @@
         <div class="container-fluid">
           <div class="navbar-brand h1">
             <img
-              src="./img/question.svg"
+              src="./img/navquestion.ico"
               alt="Question mark in circle"
               class="icon"
             />
@@ -52,7 +53,7 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav text-center me-auto mb-2 mb-lg-0 h5">
-              <li class="nav-item mx-3">
+              <li class="nav-item me-3">
                 <a class="nav-link" aria-current="page" href="./index.html"
                   >Home</a
                 >
@@ -67,7 +68,7 @@
                 </a>
               </li>
               <li class="nav-item me-3">
-                <a class="nav-link active" aria-current="page" href="#"
+                <a class="nav-link active bg-info" aria-current="page" href="#"
                   >Plotting Weather Data</a
                 >
               </li>
@@ -87,7 +88,40 @@
         </div>
       </nav>
       <hr />
+      <div class="card">
+        <div class="card-body card-header-col text-center">
+          <span
+            class="text-white card-header-span px-2 text-center w-auto fs-5 py-1"
+          >
+            Your current
+            <span class="font-monospace emph-color"> geolocation </span>
+            is
+            <span id="geo-location" class="font-monospace emph-color"
+              >(Latitude,Longitude)=(49.22,-123.11)</span
+            >
+          </span>
+        </div>
+      </div>
+      <br />
+      <div class="card">
+        <div class="card-header bg-primary text-white text-center h5">
+          Plotting
+          <span class="font-monospace card-header-span" id="exact-city"
+            >City</span
+          >'s Weather Forecast Data
+        </div>
+        <div class="card-body">bar</div>
+        <div class="card-footer text-center">
+          <button
+            class="btn btn-primary text-center text-white"
+            id="displayPlots"
+          >
+            Display Plots
+          </button>
+        </div>
+      </div>
 
+      <hr />
       <!-- Copyright-->
       <footer class="text-center h3">
         <kbd class="bg-primary text-white"
