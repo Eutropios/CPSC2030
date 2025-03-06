@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="./css/darkly.min.css" />
+    <link rel="icon" type="image/x-icon" href="./img/question.png" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <title>Web Colors</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <hr />
+      <header>
+        <!---Top bar-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+          <div class="container-fluid">
+            <div class="navbar-brand h1">
+              <img
+                src="./img/question.png"
+                alt="Question mark in circle"
+                class="icon img-fluid"
+                width="60px"
+              />
+              <b class="title font-monospace h3">Web Development</b
+              ><sup>CPSC 2030</sup>
+            </div>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a
+                    class="nav-link active fs-5 fw-bold bg-info rounded-1 text-white"
+                    aria-current="page"
+                    href="./index.html"
+                    >Home</a
+                  >
+                </li>
+                <li class="nav-item dropdown">
+                  <a
+                    class="nav-link dropdown-toggle fs-5 fw-bold"
+                    href="#"
+                    id="navbarDropdown"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    Web Colours
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li>
+                      <a class="dropdown-item" href="./web-safe-colors.html"
+                        >Web Safe Colors</a
+                      >
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="./web-named-colors.html"
+                        >Web Named Colors</a
+                      >
+                    </li>
+                  </ul>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link fs-5 fw-bold" href="./about.html">About</a>
+                </li>
+              </ul>
+              <form class="d-flex">
+                <input
+                  class="form-control me-2"
+                  type="search"
+                  placeholder="Search"
+                  aria-label="Search"
+                />
+                <button class="btn btn-outline-info text-white" type="submit">
+                  Search
+                </button>
+              </form>
+            </div>
+          </div>
+        </nav>
+      </header>
+      <hr />
+      <div class="card text-center">
+        <div class="card-header bg-info text-white h2">Web Colors</div>
+        <div class.card-body>
+          <p class="h3">
+            Understanding <code>web safe</code> colors and
+            <code>named</code> colors can help you choose the right approach
+            when building web sites.<br />
+          </p>
+          <br />
+        </div>
+        <div class="card-footer h3">
+          <div class="row">
+            <div class="col-md-6 col-sm-12">
+              <div class="card">
+                <div class="card-header h3 bg-info text-white">
+                  Web Safe Colors
+                </div>
+                <div class="card-body">
+                  <p class="h4">
+                    <code>Web safe</code> colors consist of set of
+                    <code>216</code> that were designed to display consistently
+                    in all <code>monitors</code> and
+                    <code>web browsers</code> back in the era of
+                    <code>256-color</code> (<code>8-bit</code>) displays.<br />
+                    <code>Web safe</code> colors are represented using
+                    <code>hexadecimal code</code> and are made of all the
+                    <code>combinations</code> of <code>00</code>,
+                    <code>33</code>, <code>66</code>, <code>99</code>, and
+                    <code>FF</code> for RGB values (e.g., <code>#0033CC</code>)
+                  </p>
+                </div>
+                <div class="card-footer">
+                  <a
+                    class="btn btn-lg btn-outline-info"
+                    href="web-safe-colors.html"
+                    >Web Safe Colors</a
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+              <div class="card">
+                <div class="card-header h3 bg-info text-white">
+                  Web Named Colors
+                </div>
+                <div class="card-body">
+                  <p class="h4">
+                    <code>Web named</code> colors consist of a set of
+                    <code>148</code> predefined color names recognized by
+                    <code><abbr title="Cascading Style Sheets">CSS</abbr></code
+                    >. <br />
+                    <code>Web named</code> colors are usefull for quick styling
+                    as you can simply write the <code>color name</code> without
+                    needing <code>color hexadecimal</code> value or
+                    <code>RGB</code> value.<br />
+                    <code>Web named</code> colors provides limited choice since
+                    not all <code>RGB</code> colors have names.
+                  </p>
+                </div>
+                <div class="card-footer">
+                  <a
+                    class="btn btn-lg btn-outline-info"
+                    href="web-named-colors.html"
+                    >Web Named Colors</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="h6 text-center">
+        <br />
+        <div>
+          Follow Us
+          <a class="btn btn-sm ms-2 bg-danger" href="https://www.youtube.com/"
+            ><i class="bi bi-youtube h3 align-middle"></i
+          ></a>
+          <a class="btn btn-sm ms-2 bg-primary" href="https://twitter.com/"
+            ><i class="bi bi-twitter h3 align-middle"></i
+          ></a>
+          <a class="btn btn-sm ms-2 bg-success" href="https://www.whatsapp.com/"
+            ><i class="bi bi-whatsapp h3 align-middle"></i
+          ></a>
+          <a
+            class="btn btn-sm ms-2 bg-warning"
+            href="https://www.instagram.com/"
+            ><i class="bi bi-instagram h3 align-middle"></i
+          ></a>
+        </div>
+        <br />
+        <footer class="text-center h3">
+          <kbd class="bg-primary text-white"
+            >&copy;<span></span> Noah Jenner. All Rights Reserved.</kbd
+          >
+        </footer>
+      </div>
+    </div>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="./js/home.js"></script>
+  </body>
+</html>

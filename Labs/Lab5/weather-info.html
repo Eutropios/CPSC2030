@@ -93,7 +93,7 @@
             <span class="font-monospace emph-color"> geolocation </span>
             is
             <span id="geo-location" class="font-monospace emph-color"
-              >(Latitude,Longitude)=(49.22,-123.11)</span
+              >(Latitude, Longitude)=(..., ...)</span
             >
           </span>
         </div>
@@ -102,50 +102,53 @@
       <div class="row">
         <div class="col-lg-6 col-xl-6 col-md-6 col-xs-12 col-s-12 col-xxl-6">
           <div class="card">
-            <div class="card-head bg-primary text-white display-6 text-center">
-              Weather in Vancouver
+            <div
+              class="card-head bg-primary text-white display-6 text-center"
+              id="cityHeader"
+            >
+              Weather in
             </div>
             <div class="tbody">
               <table class="table table-dark">
                 <thead class="h5">
                   <tr>
-                    <th>(Latitude,Longitude)</th>
+                    <th class="align-middle h2">(Latitude,Longitude)</th>
                     <td id="latlong">
                       <img src="./img/question.svg" alt="Image" class="icon" />
                     </td>
                   </tr>
                   <tr>
-                    <th>Sea Level</th>
+                    <th class="align-middle h2">Sea Level</th>
                     <td id="level">
                       <img src="./img/question.svg" alt="Image" class="icon" />
                     </td>
                   </tr>
                   <tr>
-                    <th>Weather Description</th>
+                    <th class="align-middle h2">Weather Description</th>
                     <td id="description">
                       <img src="./img/question.svg" alt="Image" class="icon" />
                     </td>
                   </tr>
                   <tr>
-                    <th>Temperature</th>
+                    <th class="align-middle h2">Temperature</th>
                     <td id="temperature">
                       <img src="./img/question.svg" alt="Image" class="icon" />
                     </td>
                   </tr>
                   <tr>
-                    <th>Feels Like</th>
+                    <th class="align-middle h2">Feels Like</th>
                     <td id="feels">
                       <img src="./img/question.svg" alt="Image" class="icon" />
                     </td>
                   </tr>
                   <tr>
-                    <th>Humidity</th>
+                    <th class="align-middle h2">Humidity</th>
                     <td id="humidty">
                       <img src="./img/question.svg" alt="Image" class="icon" />
                     </td>
                   </tr>
                   <tr>
-                    <th>Wind Speed</th>
+                    <th class="align-middle h2">Wind Speed</th>
                     <td id="wind">
                       <img src="./img/question.svg" alt="Image" class="icon" />
                     </td>
@@ -165,7 +168,7 @@
                 </tbody>
               </table>
             </div>
-            <div id="error-box"></div>
+            <div id="error-box">foo</div>
           </div>
           <br />
         </div>
@@ -179,8 +182,8 @@
                 id="map"
                 alt="Image"
                 src="./img/question.svg"
-                class="rounded mx-auto d-block"
-                width="450"
+                class="rounded mx-auto d-block img-fluid"
+                width="600px"
               />
             </div>
             <div class="card-footer h2">
@@ -212,7 +215,7 @@
           <div id="output-box">
             <button
               class="btn btn-white text-center btn-outline-success"
-              id="weatherData"
+              id="cityButton"
             >
               Select a city
             </button>
