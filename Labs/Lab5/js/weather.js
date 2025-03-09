@@ -65,7 +65,20 @@
     };
 
     const setWeatherIcon = (description) => {
-        // your code goes here
+        // Reference: https://openweathermap.org/weather-conditions#example
+        const iconCodeToBsName = {
+            "01d": "bi-brightness-high",
+            "02d": "bi-cloud-sun",
+            "03d": "bi-cloud",
+            "04d": "bi-clouds",
+            "09d": "bi-cloud-rain-heavy",
+            "10d": "bi-cloud-rain",
+            "11d": "bi-cloud-lightning",
+            "13d": "bi-snow3",
+            "50d": "bi-cloud-fog",
+        };
+        document.querySelector("#weatherIcon").innerHTML =
+            `<i class="bi ${iconCodeToBsName[description]} display-4 align-middle"></i>`;
     };
 
     const displayWeatherData = async () => {
@@ -77,18 +90,22 @@
             document.querySelector("#cityselect").value !== ""
         ) {
             document.querySelector("#cityHeader").innerHTML =
-                `Weather in <span class="btn btn-outline-warning mb-2">${weatherData.city.name}</span>`;
-            // TODO: Figure out why the images go off center when the script executes
-            // TODO: Figure out how to vertically center the kbd text
-            // TODO: USE BOOTSTRAP ICONS INSTEAD OF THE IMAGES OMG WHY DIDN'T I THINK OF THIS
+                `Weather in <span class="btn btn-outline-warning mb-2 align-middle">${weatherData.city.name}</span>`;
             document.querySelector("#latlong").innerHTML =
-                `<kbd class="align-right mb-2">(${weatherData.city.coord.lat},${weatherData.city.coord.lon})</kbd>`;
-            /*document.querySelector("#level").innerHTML =
-                `<kbd>${weatherData.list[0].main.sea_level} M</kbd>`;
-            /*document.querySelector("#description").innerHTML =
-            `<span class="btn btn-md btn-outline-info">${data.list[0].weather[0]["description"].toUpperCase()}</span>`;
-        document.querySelector("#temperature").innerHTML = `<kbd>${data.list[0].main.temp} °C<kbd>`;
-        document.querySelector("#feels").innerHTML = `<kbd>${data.list[0].main.feels_like} °C<kbd>`;*/
+                `<kbd class="align-right d-inline-flex h4 mt-2">(${weatherData.city.coord.lat},${weatherData.city.coord.lon})</kbd>`;
+            document.querySelector("#level").innerHTML =
+                `<kbd class="align-right d-inline-flex h4 mt-2">${weatherData.list[0].main.sea_level} M</kbd>`;
+            document.querySelector("#description").innerHTML =
+                `<span class="btn btn-md btn-outline-info">${weatherData.list[0].weather[0].description.toUpperCase()}</span>`;
+            document.querySelector("#temperature").innerHTML =
+                `<kbd class="align-right d-inline-flex h4 mt-2">${weatherData.list[0].main.temp} °C<kbd>`;
+            document.querySelector("#feels").innerHTML =
+                `<kbd class="align-right d-inline-flex h4 mt-2">${weatherData.list[0].main.feels_like} °C<kbd>`;
+            document.querySelector("#humidity").innerHTML =
+                `<kbd class="align-right d-inline-flex h4 mt-2">${weatherData.list[0].main.humidity} %<kbd>`;
+            document.querySelector("#wind").innerHTML =
+                `<kbd class="align-right d-inline-flex h4 mt-2">${weatherData.list[0].wind.speed} (KM/H)<kbd>`;
+            setWeatherIcon(weatherData.list[0].weather[0].icon);
         }
     };
 
