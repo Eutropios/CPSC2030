@@ -1,6 +1,4 @@
 (() => {
-    const weatherApiKey = "975ec9bab286d6d3920bd31dd58e4998";
-
     const setCopyRightYear = () => {
         const copy = document.querySelector("footer>kbd>span");
         if (copy !== null) {
@@ -43,23 +41,23 @@
     };
 
     const fetchWeatherData = async () => {
+        const apiKeys = await getJsonData("./data/apiKeys.json");
+        const weatherApiKey = apiKeys.weather;
         const weatherUrlRoot = "https://api.openweathermap.org/data/2.5/forecast?q=";
         const weatherUrlSuffix = `&units=metric&appid=${weatherApiKey}`;
         const countryCodes = await getJsonData("./data/country-code.json");
 
         const targetCountry = normalizeString(document.getElementById("countryselect").value);
         const targetCity = normalizeString(document.getElementById("cityselect").value);
-        console.log(targetCity);
         if (
             targetCity !== "" &&
             targetCity !== "select a city" &&
             targetCountry !== "Select a country"
         ) {
             const countryCode = countryCodes[targetCountry];
-            /* const completeUrl =
+            const completeUrl =
                 `${weatherUrlRoot}${targetCity},${countryCode}${weatherUrlSuffix}`.toLowerCase();
-            const data = await getJsonData(completeUrl);*/
-            const data = await getJsonData("./data/weather-vancouver.json");
+            const data = await getJsonData(completeUrl);
             return data;
         }
     };
@@ -67,46 +65,63 @@
     const setWeatherIcon = (description) => {
         // Reference: https://openweathermap.org/weather-conditions#example
         const iconCodeToBsName = {
-            "01d": "bi-brightness-high",
-            "02d": "bi-cloud-sun",
-            "03d": "bi-cloud",
-            "04d": "bi-clouds",
-            "09d": "bi-cloud-rain-heavy",
-            "10d": "bi-cloud-rain",
-            "11d": "bi-cloud-lightning",
-            "13d": "bi-snow3",
-            "50d": "bi-cloud-fog",
+            800: "bi-brightness-high",
+            801: "bi-cloud-sun",
+            802: "bi-cloud",
+            803: "bi-clouds",
+            804: "bi-clouds",
+            5: "bi-cloud-rain-heavy",
+            3: "bi-cloud-rain",
+            2: "bi-cloud-lightning",
+            6: "bi-snow3",
+            7: "bi-cloud-fog",
         };
+        const prefixChar = String(description).charAt(0);
+        let code = prefixChar;
+        if (prefixChar === "8") {
+            code = description;
+        }
         document.querySelector("#weatherIcon").innerHTML =
-            `<i class="bi ${iconCodeToBsName[description]} display-4 align-middle"></i>`;
+            `<i class="bi ${iconCodeToBsName[code]} display-4 align-middle"></i>`;
+    };
+
+    const editTable = (weatherData) => {
+        document.querySelector("#error-box").innerHTML = "";
+        document.querySelector("#cityHeader").innerHTML =
+            `Weather in <span class="btn btn-outline-warning mb-2 align-middle">${weatherData.city.name}</span>`;
+        const longlatStr = `(${weatherData.city.coord.lat},${weatherData.city.coord.lon})`;
+        document.querySelector("#latlong").innerHTML =
+            `<kbd class="align-right d-inline-flex h4 mt-2" id="longlatval">${longlatStr}</kbd>`;
+        document.querySelector("#level").innerHTML =
+            `<kbd class="align-right d-inline-flex h4 mt-2">${weatherData.list[0].main.sea_level} M</kbd>`;
+        document.querySelector("#description").innerHTML =
+            `<span class="btn btn-md btn-outline-info">${weatherData.list[0].weather[0].description.toUpperCase()}</span>`;
+        document.querySelector("#temperature").innerHTML =
+            `<kbd class="align-right d-inline-flex h4 mt-2">${weatherData.list[0].main.temp} °C<kbd>`;
+        document.querySelector("#feels").innerHTML =
+            `<kbd class="align-right d-inline-flex h4 mt-2">${weatherData.list[0].main.feels_like} °C<kbd>`;
+        document.querySelector("#humidity").innerHTML =
+            `<kbd class="align-right d-inline-flex h4 mt-2">${weatherData.list[0].main.humidity} %<kbd>`;
+        document.querySelector("#wind").innerHTML =
+            `<kbd class="align-right d-inline-flex h4 mt-2">${weatherData.list[0].wind.speed} (KM/H)<kbd>`;
+        setWeatherIcon(weatherData.list[0].weather[0].id);
     };
 
     const displayWeatherData = async () => {
         const weatherData = await fetchWeatherData();
-        console.log(weatherData);
+        const country = document.querySelector("#countryselect").value;
+        const city = document.querySelector("#cityselect").value;
         if (
-            document.querySelector("#countryselect").value !== "Select a country" &&
-            document.querySelector("#cityselect").value !== "Select a city" &&
-            document.querySelector("#cityselect").value !== ""
+            weatherData.cod === "200" &&
+            country !== "Select a country" &&
+            city !== "Select a city" &&
+            city !== ""
         ) {
-            document.querySelector("#cityHeader").innerHTML =
-                `Weather in <span class="btn btn-outline-warning mb-2 align-middle">${weatherData.city.name}</span>`;
-            document.querySelector("#latlong").innerHTML =
-                `<kbd class="align-right d-inline-flex h4 mt-2">(${weatherData.city.coord.lat},${weatherData.city.coord.lon})</kbd>`;
-            document.querySelector("#level").innerHTML =
-                `<kbd class="align-right d-inline-flex h4 mt-2">${weatherData.list[0].main.sea_level} M</kbd>`;
-            document.querySelector("#description").innerHTML =
-                `<span class="btn btn-md btn-outline-info">${weatherData.list[0].weather[0].description.toUpperCase()}</span>`;
-            document.querySelector("#temperature").innerHTML =
-                `<kbd class="align-right d-inline-flex h4 mt-2">${weatherData.list[0].main.temp} °C<kbd>`;
-            document.querySelector("#feels").innerHTML =
-                `<kbd class="align-right d-inline-flex h4 mt-2">${weatherData.list[0].main.feels_like} °C<kbd>`;
-            document.querySelector("#humidity").innerHTML =
-                `<kbd class="align-right d-inline-flex h4 mt-2">${weatherData.list[0].main.humidity} %<kbd>`;
-            document.querySelector("#wind").innerHTML =
-                `<kbd class="align-right d-inline-flex h4 mt-2">${weatherData.list[0].wind.speed} (KM/H)<kbd>`;
-            setWeatherIcon(weatherData.list[0].weather[0].icon);
+            editTable(weatherData);
+            return;
         }
+        document.querySelector("#error-box").innerHTML =
+            `<div class="h2 bg-danger-subtle text-center border border-danger-subtle error-text-span mb-3 p-2">No weather data for ${city}</div>`;
     };
 
     const createCitySelect = (select) => {
@@ -147,8 +162,29 @@
         populate(dropdown, countries);
     };
 
-    const displayMap = () => {
-        // your code goes here
+    const displayMap = async () => {
+        // NOTE: I made this function async to read the API keys from a JSON as to prevent
+        // making them public on Github.
+        const apiKeys = await getJsonData("./data/apiKeys.json");
+        const mapBoxApiKey = apiKeys.mapbox;
+
+        const coordsStr = document.querySelector("#longlatval").textContent;
+        const arrayFromString = coordsStr.slice(1, -1).split(",").map(Number);
+        mapboxgl.accessToken = mapBoxApiKey;
+        const map = new mapboxgl.Map({
+            container: "map",
+            style: "mapbox://styles/mapbox/satellite-streets-v12",
+            projection: "mercator",
+            zoom: 10,
+            interactive: false,
+            center: [arrayFromString[1], arrayFromString[0]],
+        });
+
+        map.scrollZoom.disable();
+
+        map.on("style.load", () => {
+            map.setFog({});
+        });
     };
 
     window.onload = () => {
@@ -157,5 +193,6 @@
         populateCountries();
         document.getElementById("weatherData").onclick = populateCities;
         document.getElementById("cityButton").onclick = displayWeatherData;
+        document.getElementById("displayMap").onclick = displayMap;
     };
 })();

@@ -23,6 +23,11 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v3.10.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.10.0/mapbox-gl.js"></script>
     <script src="./js/weather.js"></script>
   </head>
   <body>
@@ -184,7 +189,7 @@
                 </tbody>
               </table>
             </div>
-            <div id="error-box">foo</div>
+            <div id="error-box" class="w-100 text-center"></div>
           </div>
           <br />
         </div>
@@ -193,9 +198,8 @@
             <div class="card-header bg-primary color-white text-white h4">
               Map
             </div>
-            <div class="card-body">
+            <div class="card-body" id="map">
               <img
-                id="map"
                 alt="Image"
                 src="./img/question.svg"
                 class="rounded mx-auto d-block img-fluid"
@@ -203,7 +207,9 @@
               />
             </div>
             <div class="card-footer h2">
-              <button class="btn btn-lg btn-primary">Display Map</button>
+              <button class="btn btn-lg btn-primary" id="displayMap">
+                Display Map
+              </button>
             </div>
           </div>
         </div>

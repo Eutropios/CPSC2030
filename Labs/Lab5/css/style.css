@@ -20,3 +20,7 @@ img.icon {
 .card-header-span {
     background-color: #444444;
 }
+
+.error-text-span {
+    color: #5c1c1a !important;
+}
