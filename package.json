@@ -1,8 +1,17 @@
 {
     "pnpm": {
-        "neverBuiltDependencies": []
+        "neverBuiltDependencies": [],
+        "executionEnv": {
+            "nodeVersion": "22.14.0"
+        }
     },
     "devDependencies": {
-        "@biomejs/biome": "1.9.4"
+        "@biomejs/biome": "1.9.4",
+        "@types/express": "^5.0.0",
+        "@types/node": "^22.13.10",
+        "nodemon": "^3.1.9"
+    },
+    "dependencies": {
+        "express": "^4.21.2"
     }
 }

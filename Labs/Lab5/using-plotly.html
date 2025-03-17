@@ -23,7 +23,7 @@
       src="https://cdn.plot.ly/plotly-3.0.1.min.js"
       charset="utf-8"
     ></script>
-    <script src="./js/home.js"></script>
+    <script src="./js/using-plotly.js"></script>
   </head>
   <body>
     <div class="container">
@@ -97,7 +97,7 @@
             <span class="font-monospace emph-color"> geolocation </span>
             is
             <span id="geo-location" class="font-monospace emph-color"
-              >(Latitude,Longitude)=(49.22,-123.11)</span
+              >(Latitude, Longitude)=(..., ...)</span
             >
           </span>
         </div>
@@ -107,10 +107,12 @@
         <div class="card-header bg-primary text-white text-center h5">
           Plotting
           <span class="font-monospace card-header-span" id="exact-city"
-            >City</span
+            >Vancouver</span
           >'s Weather Forecast Data
         </div>
-        <div class="card-body">bar</div>
+        <div class="card-body">
+          <div class="text-center" id="plot"></div>
+        </div>
         <div class="card-footer text-center">
           <button
             class="btn btn-primary text-center text-white"
